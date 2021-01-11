@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hola</title>
+
+    <style>
+    	
+    	*{
+    		   font-family: Monospace, sand-serif;
+    	}
+
+        #chat{
+            color: gray;
+            width: 98%;
+            height: 445px;
+            margin: 0 auto;
+            margin-top: 20px;;
+            display: none;
+            font-size: 13px;
+        }
+        
+        body{
+        	    background-color: black;
+        }
+
+        #inMensaje{
+            border: solid 2px #05FF00;
+            background-color: black;
+            color: gray;
+            width: 80%;
+            height: 50px;
+            font-size: 13px;
+            float: left;
+            text-align: center;
+        }
+
+        #in{
+            margin: 0 auto;
+        }
+
+        .cajas{
+        	    border: solid 2px #05FF00;
+        	    color: #05FF00;
+            width: 120px;
+            height: 30px;
+            background-color: black;
+            float: left;
+            margin: 10px;
+            padding: 10px;
+        }
+
+        .boton{
+        	    color: #05FF00;
+        	   border: solid 2px #05FF00;
+            height: 56px;
+            font-size: 13px;
+            font-weight: bold;
+            float: right;
+            background-color: black;
+        }
+
+        p{
+            font-size: 26px;
+            text-align: center;
+            margin: 0;
+        }
+
+        #limpiar{
+            float: right;
+        }
+        #ocultar{
+            float: left;
+        }
+        #espacio{
+        	    height: 220px;
+        	    background-color: black;
+        	    display: block;
+        	    visibility: hidden;
+        }
+
+    </style>
+
+    <script>
+        function limpiar(){
+            var text;
+            var chat;
+            text = document.getElementById("inMensaje");
+            chat = document.getElementById("chat");
+            chat.innerHTML = "";
+            text.value = "";
+        }
+        function ocultar(num){
+            var chat;
+            var apagador;
+            var espacio;
+            espacio = document.getElementById("espacio");
+            apagador = document.getElementById("apagador");
+            chat = document.getElementById("chat");
+
+            if(apagador.innerHTML=="OCULTAR" || num == 0){
+                chat.style.display = "none";
+                espacio.style.display = "block";
+                apagador.innerHTML = "MOSTRAR";
+            }else{
+            	  espacio.style.display = "none";
+                chat.style.display = "block";
+                apagador.innerHTML = "OCULTAR";
+            }
+        }
+
+        function enviar(){
+            var text;
+            var chat;
+
+            text = document.getElementById("inMensaje");
+            chat = document.getElementById("chat");
+
+            if(chat.innerHTML != ""){
+                chat.innerHTML = chat.innerHTML + "<br/>" + text.value;
+            }else{
+                chat.innerHTML = text.value;
+            }
+
+            text.value = "";
+        }
+        
+    </script>
+
+</head>
+<body>
+
+    <section>
+        <div id="chat"></div>
+        <div id="espacio"></div>
+    </section>
+
+    <section>
+        <div class="cajas" id="ocultar" onclick="ocultar(1)">
+            <p id="apagador">MOSTRAR</p>
+        </div>
+        <div class="cajas" id="limpiar" onclick="limpiar()">
+            <p>LIMPIAR</p>
+        </div>
+    </section>
+    
+    <section>
+        <div id="in">
+        	
+            <input type="text" id="inMensaje" onfocus="ocultar(0)" placeholder=" Escribe la vaina aqui..." />
+            <input class="boton" type="button" value="ENVIAR" onclick="enviar()"/>
+        </div>
+    </section>
+    
+</body>
+</html>
